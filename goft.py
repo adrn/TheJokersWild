@@ -12,8 +12,8 @@ from io import BytesIO
 
 _host = "https://gaia.esac.esa.int"
 
-_default_observing_period_from = "2014-09-26T00:00:00"
-_default_observing_period_to = "2019-06-07T00:00:00"
+_default_observing_period_from = "2014-07-01T00:00:00"
+_default_observing_period_to = "2016-05-01T00:00:00"
 
 @u.quantity_input(ra=u.deg, dec=u.deg)
 def forecast_position(ra, dec, observation_period_from=None,
@@ -93,7 +93,7 @@ def forecast_position(ra, dec, observation_period_from=None,
 
     # TODO: Should we until it is finished?
     fmt = "csv"
-    result = session.get("{0}/gost/export.jsp".format(_host), 
+    result = session.get("{0}/gost/export.jsp".format(_host),
                          params=dict(id=identifier, format=fmt))
 
     forecast = Table.read(BytesIO(result.content), format=fmt)
